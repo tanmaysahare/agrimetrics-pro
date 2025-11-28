@@ -7,27 +7,15 @@ interface MainLayoutProps {
 }
 
 export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-    // In a real app, activeTab would be handled by routing (react-router).
-    // For this single-page feel requested, we'll lift state up or use router.
-    // The prompt implies a dashboard, so I'll assume we pass the active tab state down 
-    // or manage it in the parent App component.
-    // However, MainLayout usually wraps content.
-    // Let's make MainLayout accept the navigation state or slots.
-
-    // Actually, let's just render the shell here.
-    // The children will be the page content.
-    // But Sidebar needs to control the view.
-    // I'll modify MainLayout to accept activeTab props if needed, 
-    // or better, I'll move the state to App.tsx and pass it down.
-
     return (
-        <div className="min-h-screen bg-slate-950 text-slate-100 flex">
-            {/* Sidebar is fixed, so we add margin to main content */}
-            <div className="w-64 flex-shrink-0">
-                {/* Placeholder for fixed sidebar space */}
+        <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-emerald-500/30">
+            {/* Animated Background Gradient */}
+            <div className="fixed inset-0 z-0 pointer-events-none">
+                <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-emerald-500/5 blur-[120px] animate-pulse" />
+                <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/5 blur-[120px] animate-pulse delay-1000" />
             </div>
 
-            <div className="flex-1 flex flex-col min-w-0">
+            <div className="relative z-10 flex flex-col min-h-screen pl-64">
                 <Header />
                 <main className="flex-1 p-8 overflow-y-auto">
                     <AnimatePresence mode="wait">
@@ -35,7 +23,7 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.2 }}
+                            transition={{ duration: 0.3 }}
                         >
                             {children}
                         </motion.div>

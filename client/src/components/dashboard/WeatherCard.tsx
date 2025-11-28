@@ -1,43 +1,37 @@
 import React from 'react';
-import { CloudSun, Wind, Droplets } from 'lucide-react';
+import { CloudRain, Wind, Droplets, Sun } from 'lucide-react';
+import { Card, CardContent } from '../ui/Card';
 
 export const WeatherCard: React.FC = () => {
     return (
-        <div className="col-span-1 md:col-span-2 lg:col-span-1 rounded-xl p-6 bg-gradient-to-br from-indigo-600 to-purple-700 text-white relative overflow-hidden">
-            <div className="relative z-10">
+        <Card className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 border-blue-500/30">
+            <CardContent className="p-6 h-full flex flex-col justify-between">
                 <div className="flex justify-between items-start">
                     <div>
-                        <h3 className="text-indigo-100 font-medium">Field Conditions</h3>
-                        <p className="text-3xl font-bold mt-1">Partly Cloudy</p>
+                        <p className="text-blue-200 font-medium">Field Conditions</p>
+                        <h3 className="text-3xl font-bold text-white mt-1">24°C</h3>
+                        <p className="text-sm text-blue-200 mt-1">Partly Cloudy</p>
                     </div>
-                    <CloudSun size={40} className="text-yellow-300" />
-                </div>
-
-                <div className="mt-8 grid grid-cols-3 gap-4">
-                    <div>
-                        <p className="text-indigo-200 text-xs">Temp</p>
-                        <p className="font-semibold text-lg">28°C</p>
-                    </div>
-                    <div>
-                        <p className="text-indigo-200 text-xs">Wind</p>
-                        <div className="flex items-center space-x-1">
-                            <Wind size={14} />
-                            <p className="font-semibold text-lg">12km/h</p>
-                        </div>
-                    </div>
-                    <div>
-                        <p className="text-indigo-200 text-xs">Precip</p>
-                        <div className="flex items-center space-x-1">
-                            <Droplets size={14} />
-                            <p className="font-semibold text-lg">15%</p>
-                        </div>
+                    <div className="p-3 bg-white/10 rounded-full backdrop-blur-sm">
+                        <Sun className="text-amber-400" size={24} />
                     </div>
                 </div>
-            </div>
 
-            {/* Background decorations */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-indigo-500/30 rounded-full blur-xl -ml-10 -mb-10" />
-        </div>
+                <div className="grid grid-cols-3 gap-2 mt-4">
+                    <div className="text-center p-2 bg-slate-900/40 rounded-lg">
+                        <Wind size={16} className="mx-auto text-slate-400 mb-1" />
+                        <p className="text-xs text-slate-300">12 km/h</p>
+                    </div>
+                    <div className="text-center p-2 bg-slate-900/40 rounded-lg">
+                        <Droplets size={16} className="mx-auto text-blue-400 mb-1" />
+                        <p className="text-xs text-slate-300">45%</p>
+                    </div>
+                    <div className="text-center p-2 bg-slate-900/40 rounded-lg">
+                        <CloudRain size={16} className="mx-auto text-slate-400 mb-1" />
+                        <p className="text-xs text-slate-300">0%</p>
+                    </div>
+                </div>
+            </CardContent>
+        </Card>
     );
 };
